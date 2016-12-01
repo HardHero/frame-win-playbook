@@ -5,10 +5,10 @@
 - name: create project folder
   win_file: name={{project_folder}} state=directory
 - name: Add script for ScreenSaver functions
-  win_template: src=./ps1_scripts/screensaver.psm1.j2 dest={{project_folder}}/screensaver.psm1
+  win_template: src=templates/screensaver.psm1.j2 dest={{project_folder}}/screensaver.psm1
 - name: Create profile File
   win_file: name={{profile_script}} state=directory
 - name: Add screensaver module to profile
-  win_template: src=./ps1_scripts/ps_profile.ps1.j2 dest={{profile_script}}/Microsoft.PowerShell_profile.ps1
+  win_template: src=templates/ps_profile.ps1.j2 dest={{profile_script}}/Microsoft.PowerShell_profile.ps1
 - name: Set Screensaver timeout
   win_shell: Set-ScreenSaverTimeout -value {{timeout}} > {{project_folder}}/ssst.txt
