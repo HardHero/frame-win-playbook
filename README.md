@@ -6,7 +6,9 @@ Before you run this script, you need to run the powershell script at the link be
 `https://github.com/ansible/ansible/blob/devel/examples/scripts/ConfigureRemotingForAnsible.ps1`
 
 # Usage
-## Development (if you used `--vagrant` flag: `vagrant up`
-When you make changes, run `vagrant provision` to update your vms.
-## Production
-`ansible-playbook -i production site.yml`
+This Playbook does the following:
+1. Create the User `frame` and add them to a group
+2. Sets up `./project_folder` for this repo
+3. Adds the psm1 template to the project folder
+4. Creates and adds the screensaver module to the users profile
+5. Sets the screensaver timeout to 45 seconds
