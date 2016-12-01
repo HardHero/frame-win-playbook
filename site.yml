@@ -1,20 +1,7 @@
-# file: site.yml
 ---
-- name: Add a user
-  hosts: all
-  gather_facts: false
-  vars_files:
-    - host_vars/frame.yml
-  tasks:
-    - name: create user for additional access
-      win_user: name=frame password='Thismypassword1290 groups=Administrators'
-    - name: create project folder
-      win_file: name={{project_folder}} state=directory
-    - name: Add script for ScreenSaver functions
-      win_template: src=./ps1_scripts/screensaver.psm1.j2 dest={{project_folder}}/screensaver.psm1
-    - name: Create profile File
-      win_file: name={{profile_script}} state=directory
-    - name: Add screensaver module to profile
-      win_template: src=./ps1_scripts/ps_profile.ps1.j2 dest={{profile_script}}/Microsoft.PowerShell_profile.ps1
-    - name: Set Screensaver timeout
-      win_shell: Set-ScreenSaverTimeout -value 45
+  - hosts: windows
+    gather_facts: no
+    become: Administrator
+    become_user: yes
+    roles:
+      - roles/frame_windows
